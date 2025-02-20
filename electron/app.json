@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "dicebattery",
+    "slug": "dicebattery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to camera to scan QR codes"
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA"]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+        }
+      ]
+    ],
+    "newArchEnabled": true
+  }
+}
