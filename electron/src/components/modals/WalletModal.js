@@ -7,11 +7,18 @@ const WalletModal = ({
   visible, 
   onClose, 
   wallet,
-  transactions,
+  transactions = [],
   onDisconnect 
 }) => {
   const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(wallet.address);
+    if (wallet?.address) {
+      await Clipboard.setStringAsync(wallet.address);
+    }
+  };
+
+  const formatBalance = (balance) => {
+    if (balance === null || balance === undefined) return '0.00';
+    return typeof balance === 'number' ? balance.toFixed(2) : '0.00';
   };
 
   const renderTransaction = ({ item }) => (
@@ -28,7 +35,7 @@ const WalletModal = ({
       </View>
       
       <View style={styles.transactionDetails}>
-        <Text style={styles.transactionTitle}>{item.stationName}</Text>
+        <Text style={styles.transactionTitle}>{item.stationName || 'Transaction'}</Text>
         <Text style={styles.transactionDate}>{item.date}</Text>
       </View>
       
@@ -38,7 +45,7 @@ const WalletModal = ({
           item.type === 'deposit' ? styles.depositAmount : styles.spendAmount
         ]}
       >
-        {item.type === 'deposit' ? '+' : '-'}{item.amount} {wallet.currency}
+        {item.type === 'deposit' ? '+' : '-'}{formatBalance(item.amount)} {wallet?.currency || 'ETH'}
       </Text>
     </View>
   );
@@ -61,14 +68,14 @@ const WalletModal = ({
 
           <View style={styles.balanceSection}>
             <Text style={styles.balanceLabel}>Current Balance</Text>
-            <Text style={styles.balanceValue}>{wallet.balance.toFixed(2)}</Text>
-            <Text style={styles.currencyText}>{wallet.currency}</Text>
+            <Text style={styles.balanceValue}>{formatBalance(wallet?.balance)}</Text>
+            <Text style={styles.currencyText}>{wallet?.currency || 'ETH'}</Text>
           </View>
 
           <View style={styles.addressSection}>
             <Text style={styles.addressLabel}>Wallet Address</Text>
             <View style={styles.addressBox}>
-              <Text style={styles.addressValue}>{wallet.address}</Text>
+              <Text style={styles.addressValue}>{wallet?.address || 'Not connected'}</Text>
               <TouchableOpacity 
                 style={styles.copyButton}
                 onPress={copyToClipboard}
@@ -85,6 +92,9 @@ const WalletModal = ({
               renderItem={renderTransaction}
               keyExtractor={item => item.id}
               style={styles.transactionsList}
+              ListEmptyComponent={
+                <Text style={styles.emptyText}>No transactions yet</Text>
+              }
             />
           </View>
 
@@ -179,6 +189,11 @@ const styles = StyleSheet.create({
   },
   transactionsList: {
     maxHeight: 300,
+  },
+  emptyText: {
+    textAlign: 'center',
+    color: '#757575',
+    marginTop: 20,
   },
   transactionItem: {
     flexDirection: 'row',

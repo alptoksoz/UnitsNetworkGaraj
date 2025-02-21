@@ -3,17 +3,25 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const WalletHeader = ({ wallet, onPress }) => {
+  const formatBalance = (balance) => {
+    if (balance === null || balance === undefined) return '0.00';
+    return typeof balance === 'number' ? balance.toFixed(2) : '0.00';
+  };
+
+  const formatAddress = (address) => {
+    if (!address) return '...';
+    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.header}>
         <MaterialCommunityIcons name="wallet" size={22} color="#2E7D32" />
         <Text style={styles.balance}>
-          {wallet.balance.toFixed(2)} {wallet.currency}
+          {formatBalance(wallet?.balance)} {wallet?.currency || 'ETH'}
         </Text>
       </View>
-      <Text style={styles.address}>
-        {wallet.address.substring(0, 6)}...{wallet.address.substring(wallet.address.length - 4)}
-      </Text>
+      <Text style={styles.address}>{formatAddress(wallet?.address)}</Text>
     </TouchableOpacity>
   );
 };

@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "7022498c-3efb-4975-bbf9-946e12f89635",
+		"name": "5kDollar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13343034"
+	},
+	"item": [
+		{
+			"name": "stations/add",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Enes - Istanbul\",\n    \"maxPowerOutput\": 250,\n    \"pricePerKw\": 4.5,\n    \"latitude\": 41.4082,\n    \"longitude\": 28.2784\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/stations/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"stations",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Stations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/stations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"stations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Berat\",\n    \"email\": \"berat@gmail.com\",\n    \"password\": \"berat\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/update-balance",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"67b78961eac1d7ec88f1aa55\",\n    \"amount\": 500\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/users/update-balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"users",
+						"update-balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reservations/create",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"67b78961eac1d7ec88f1aa55\",\n    \"stationId\": \"67b786c7eac1d7ec88f1aa47\",\n    \"endTime\": \"2025-02-21T03:00:00.000Z\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/reservations/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"reservations",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET reservations/:userid",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/reservations/:userid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"reservations",
+						":userid"
+					],
+					"variable": [
+						{
+							"key": "userid",
+							"value": "67b78961eac1d7ec88f1aa55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reservations/cancel",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"reservationId\": \"67b7a78fd72911440d90d720\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/reservations/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"reservations",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charging-sessions/start",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": \"67b78961eac1d7ec88f1aa55\",\n    \"station\": \"67b78768eac1d7ec88f1aa4b\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/charging-sessions/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"charging-sessions",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVEATE CHARGE ?",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/charging-sessions/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"charging-sessions",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "67b78961eac1d7ec88f1aa55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET transactions",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/transactions/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"transactions",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "67b78961eac1d7ec88f1aa55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charging stop",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sessionId\": \"67b7abeda96c30ff0c8c52e8\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/charging-sessions/stop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"charging-sessions",
+						"stop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GECMIS PAGE",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/pages/transactions/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"pages",
+						"transactions",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "67b78961eac1d7ec88f1aa55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVE PAGE",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/pages/active/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"pages",
+						"active",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "67b78961eac1d7ec88f1aa55"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

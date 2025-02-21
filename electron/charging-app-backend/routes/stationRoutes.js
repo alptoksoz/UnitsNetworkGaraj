@@ -23,5 +23,19 @@ router.post("/add", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+// Backend'de bir yerde çalıştırın
+
+const testStation = new Station({
+  name: "Test Charging Station",
+  maxPowerOutput: 50,
+  pricePerKw: 2.5,
+  location: {
+    latitude: 39.92077,
+    longitude: 32.85411
+  },
+  status: "available"
+});
+
+testStation.save().then(() => console.log('Test station created'));
 
 module.exports = router;
